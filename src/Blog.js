@@ -3,18 +3,10 @@ import { Layout } from './Layout';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBlogs } from './store/slices/blogSlice';
-import { BsThreeDotsVertical } from 'react-icons/bs';
 import {
 	Button,
 	Heading,
 	Flex,
-	Text,
-	Image,
-	Menu,
-	IconButton,
-	MenuButton,
-	MenuItem,
-	MenuList,
 	SimpleGrid,
 	useDisclosure,
 	Modal,
@@ -24,12 +16,11 @@ import {
 	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
-	FormLabel,
 	Input,
 	FormControl,
 } from '@chakra-ui/react';
+import { Item } from './Item';
 export const Blog = () => {
-	const { isOpen, onOpen, onClose } = useDisclosure();
 	const {
 		isOpen: isOpen1,
 		onOpen: onOpen1,
@@ -295,65 +286,7 @@ export const Blog = () => {
 				</Flex>
 				<SimpleGrid columns={6}>
 					{ctx.blogs.slice(-5).map((blog, index) => (
-						<Flex ml='8px' key={index}>
-							<Flex flexDirection={'column'}>
-								<Image
-									src={blog.image}
-									h='200px'
-									w='200px'
-									borderRadius={'5px'}
-								/>
-								<Menu isOpen={isOpen}>
-									<MenuButton
-										sx={{
-											mt: '-200px',
-											ml: '160px',
-											width: 'fit-content',
-											backgroundColor: 'white',
-										}}
-										boxShadow={'none !important'}
-										as={IconButton}
-										icon={<BsThreeDotsVertical />}
-										variant='outline'
-										onMouseEnter={onOpen}
-										onMouseLeave={onClose}
-									/>
-									<MenuList
-										onMouseEnter={onOpen}
-										onMouseLeave={onClose}
-										minWidth='148px'
-									>
-										<MenuItem onClick={() => editBlogButton(blog._id)}>
-											{' '}
-											Edit{' '}
-										</MenuItem>
-										<MenuItem onClick={() => deleteBlog(blog._id)}>
-											{' '}
-											Delete{' '}
-										</MenuItem>
-									</MenuList>
-								</Menu>
-								<Flex>
-									<Flex>
-										<Heading
-											size='sm'
-											m='4px'
-											backgroundColor={'white'}
-											borderRadius={'3px'}
-											mt='174px'
-										>
-											{blog.title}
-										</Heading>
-										<Flex mt='174px'>
-											<Text fontSize={'14px'}>{blog.date}</Text>
-										</Flex>
-									</Flex>
-								</Flex>
-								<Flex ml={'4px'}>
-									<Text fontSize={'12px'}>{blog.content}</Text>
-								</Flex>
-							</Flex>
-						</Flex>
+						<Item blog={blog} index={index}/>
 					))}
 				</SimpleGrid>
 			</Flex>
