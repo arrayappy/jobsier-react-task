@@ -12,7 +12,7 @@ import {
 	MenuList,
   useDisclosure
 } from '@chakra-ui/react';
-export const Item = ({blog, index}) => {
+export const Item = ({blog, index, deleteBlog, editBlogButton}) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex ml='8px' key={index}>
