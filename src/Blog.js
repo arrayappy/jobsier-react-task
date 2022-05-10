@@ -43,29 +43,29 @@ export const Blog = () => {
 	const [editState, setEditState] = useState({});
 	const ctx = useSelector((state) => state.blog);
 	const dispatch = useDispatch();
-	const API_KEY = 'a7dcaf13b0384664aebab99e9c1ebe22';
+	const API_KEY = '481b52b963904d0cab65c9cbbd5a0546';
 	useEffect(() => {
 		//default posting 1 blog data at each page load
-		// axios(
-		//     {
-		//       method: "post",
-		//       url: `https://crudcrud.com/api/${API_KEY}/blogs`,
-		//       data:{
-		//         "title": "test1",
-		//         "content": "test1 description",
-		//         "date": "2020-01-01",
-		//         "image": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-		//       },
-		//       options: origin,
-		//     },
-		//     { timeout: 1000 }
-		//   )
-		//     .then((res) => {
-		//       console.log(res);
-		//   })
-		//     .catch((e) => {
-		//       console.log(e);
-		//   });
+		axios(
+		    {
+		      method: "post",
+		      url: `https://crudcrud.com/api/${API_KEY}/blogs`,
+		      data:{
+		        "title": "test1",
+		        "content": "test1 description",
+		        "date": "2020-01-01",
+		        "image": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+		      },
+		      options: origin,
+		    },
+		    { timeout: 1000 }
+		  )
+		    .then((res) => {
+		      console.log(res);
+		  })
+		    .catch((e) => {
+		      console.log(e);
+		  });
 
 		axios.get(`https://crudcrud.com/api/${API_KEY}/blogs`).then((res) => {
 			dispatch(setBlogs(res.data));
@@ -286,7 +286,7 @@ export const Blog = () => {
 				</Flex>
 				<SimpleGrid columns={6}>
 					{ctx.blogs.slice(-5).map((blog, index) => (
-						<Item blog={blog} index={index}/>
+						<Item blog={blog} index={index} deleteBlog={deleteBlog} editBlogButton={editBlogButton}/>
 					))}
 				</SimpleGrid>
 			</Flex>
